@@ -4,6 +4,18 @@ import yagmail
 app = Flask(__name__)
 app.secret_key = 'segredo_super_secreto'
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/sobre')
+def sobre():
+    return render_template('sobre.html')
+
+@app.route('/depoimentos')
+def depoimentos():
+    return render_template('depoimentos.html')
+
 @app.route('/contato', methods=['GET', 'POST'])
 def contato():
     if request.method == 'POST':
@@ -25,3 +37,6 @@ def contato():
 
         return redirect('/contato')
     return render_template('contato.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
